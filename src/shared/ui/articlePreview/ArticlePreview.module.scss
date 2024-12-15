@@ -1,0 +1,21 @@
+@use "../../../app/styles/variables" as *;
+
+.articlePreview {
+  margin: 26px auto;
+  padding: 15px 14px 24px 16px;
+  width: 938px;
+  height: 140px;
+  background-color: $background-color-base;
+  filter: $shadow-2;
+  display: grid;
+  grid-template-columns: auto max-content 46px;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.mainInfo {
+  margin-right: 85px;
+}
+
+
+

@@ -1,0 +1,25 @@
+@use "../../../app/styles/variables" as *;
+
+.articleData {
+  margin-right: 12px;
+  justify-self: end;
+  text-align: end;
+
+  .authorName {
+    color: $heading-color;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .articleDate {
+    line-height: 22px;
+    color: $text-color-secondary;
+  }
+}
+
+.authorProfile {
+  justify-self: end;
+  width: 46px;
+  height: 46px;
+}

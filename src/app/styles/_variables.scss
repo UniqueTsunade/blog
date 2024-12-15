@@ -1,0 +1,32 @@
+//Colors
+$antiFlashWhite: #F3F7FA;
+$dodgerBlue: #1890FF;
+$white: #FFFFFF;
+$kellyGreen:#52C41A;
+$red: #F5222D;
+$orange:#FAAD14;
+$platinum: #D9D9D9;
+
+//Background
+$Background: $antiFlashWhite;
+$background-color-base: $white;
+
+
+//UI element colors
+$info-color: $dodgerBlue;
+$shadow-2: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15)); 
+$primary-color: $dodgerBlue;
+$success-color: $kellyGreen;
+$processing-color: $dodgerBlue;
+$error-color: $red;
+$highlight-color: $red;
+$warning-color: $orange;
+$normal-color: $platinum;
+$border-color-base: $platinum;
+$btn-primary-color: $white;
+
+//Text color 
+$heading-color:rgba(0, 0, 0, 0.85);
+$text-color-secondary: rgba(0, 0, 0, 0.5);
+$text-color: rgba(0, 0, 0, 0.75);
+
