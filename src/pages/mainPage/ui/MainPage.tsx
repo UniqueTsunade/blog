@@ -7,7 +7,6 @@ import { fetchArticle } from "@/features/articles/model/articlesThunk";
 import { AppDispatch } from "@/app/store";
 import { setCurrentPage } from "@/features/pagination/model/paginationSlice";
 import PaginationArticles from "@/features/pagination/ui";
-import styles from "./MainPage.module.scss";
 
 const MainPage: React.FC = () => {
   const { articlesCount } = useSelector(

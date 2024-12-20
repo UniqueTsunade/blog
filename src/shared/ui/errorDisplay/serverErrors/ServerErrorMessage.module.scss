@@ -1,0 +1,19 @@
+@use "../../../../app/styles/variables" as *;
+
+.serverErrorMessageBlock {
+  margin: 0 auto 8px;
+  text-align: center;
+
+  ul {
+    color: $highlight-color;
+    li {
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+  }
+}
+
+.generalServerError {
+  color: $highlight-color;
+}

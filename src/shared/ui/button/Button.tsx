@@ -1,11 +1,10 @@
 interface ButtonProps {
-    btnText: string;
-    type?: "button" | "submit" | "reset";
-    btnClassName?: string;
+  btnText: string;
+  type?: "button" | "submit" | "reset";
+  btnClassName?: string;
 }
 
-
-const Button: React.FC<ButtonProps> = ({type, btnClassName, btnText}) => {
+const Button: React.FC<ButtonProps> = ({ type, btnClassName, btnText }) => {
   return (
     <button className={btnClassName} type={type}>
       {btnText}

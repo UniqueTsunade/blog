@@ -1,14 +1,20 @@
-import { BrowserRouter } from "react-router-dom";
 import { Providers } from "./providers";
 import AppRouter from "./routers";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "./store";
+import { useEffect } from "react";
+import { restoreSession } from "@/features/signIn/model/signInSlice";
 
 function App() {
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(restoreSession());
+  }, [dispatch]);
 
   return (
     <Providers>
-      <BrowserRouter>
-        <AppRouter />
-      </BrowserRouter>
+      <AppRouter />
     </Providers>
   );
 }

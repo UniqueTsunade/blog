@@ -8,7 +8,7 @@ const Layout: React.FC = () => {
   const { isLoading } = useSelector((state: RootState) => state.articles);
   return (
     <>
-      {isLoading && <MainLoader />}
+      {/* {isLoading && <MainLoader />} */}
       <div>
         <Header />
         <Outlet />

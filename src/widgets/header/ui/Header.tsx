@@ -1,20 +1,26 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
+import HeaderAuthorized from "@/shared/ui/headerAuthorized";
+import HeaderUnauthorized from "@/shared/ui/headerUnauthorized";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store";
 
-const Header = () => {
+
+const Header: React.FC = () => {
+
+  const {data, isAuthorized} = useSelector((state: RootState) => state.signIn);
+
+
   return (
     <header className={styles.header}>
       <Link to="/">
         <h6 className={styles.logoName}>Realworld Blog</h6>
       </Link>
-      <div className={styles.buttons}>
-        <Link to="/sign-in" className={styles.signIn}>
-          Sign In
-        </Link>
-        <Link to="/sign-up" className={styles.signUp}>
-          Sign Up
-        </Link>
-      </div>
+      {isAuthorized ? (
+        <HeaderAuthorized username={data?.user.username} />
+      ) : (
+        <HeaderUnauthorized />
+      )}
     </header>
   );
 };
