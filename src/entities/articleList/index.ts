@@ -1,3 +1,3 @@
-import ArticleList from "./ui/ArticleList";
+import ArticleList from "./ui/components/ArticleList";
 
 export default ArticleList;

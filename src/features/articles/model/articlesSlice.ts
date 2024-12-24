@@ -1,8 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, SerializedError } from "@reduxjs/toolkit";
 import { Article, ArticlesResponse, FullArticle } from "./types";
 import { fetchArticle } from "./articlesThunk";
 import { Status } from "./types";
-import { fetchFullArticleBySlug } from "./fullArticleBySlugThunk";
+import { getArticleBySlug } from "./getArticleBySlugThunk";
+import { handleCustomError } from "@/entities/articles/lib/handleCustomError";
 
 export interface ArticlesSliceState {
   status: Status;
@@ -17,7 +18,7 @@ const initialState: ArticlesSliceState = {
   fullArticle: null,
   error: null,
   articlesCount: 0,
-  isLoading: true,
+  isLoading: false,
 };
 
 export const articlesSlice = createSlice({
@@ -39,27 +40,27 @@ export const articlesSlice = createSlice({
           state.isLoading = false;
         }
       )
-      .addCase(fetchArticle.rejected, (state, action) => {
+      .addCase(fetchArticle.rejected, (state, action: PayloadAction<unknown, string, unknown, SerializedError>) => {
         state.status = Status.ERROR;
-        state.error = (action.payload as string) || "Failed to fetch articles";
+        state.error = handleCustomError(action.payload) || action.error.message || "Failed to fetch articles";
         console.error("Error fetching articles:", action.payload);
         state.isLoading = false;
       })
-      .addCase(fetchFullArticleBySlug.pending, (state) => {
+      .addCase(getArticleBySlug.pending, (state) => {
         state.isLoading = true;
         state.status = Status.LOADING;
       })
       .addCase(
-        fetchFullArticleBySlug.fulfilled,
+        getArticleBySlug.fulfilled,
         (state, action: PayloadAction<FullArticle>) => {
           state.status = Status.SUCCESS;
           state.fullArticle = action.payload.article;
           state.isLoading = false;
         }
       )
-      .addCase(fetchFullArticleBySlug.rejected, (state, action) => {
+      .addCase(getArticleBySlug.rejected, (state, action: PayloadAction<unknown, string, unknown, SerializedError>) => {
         state.status = Status.ERROR;
-        state.error = (action.payload as string) || "Failed to fetch articles";
+        state.error = handleCustomError(action.payload) || action.error.message || "Failed to fetch articles";
         console.error("Error fetching articles:", action.payload);
         state.isLoading = false;
       });

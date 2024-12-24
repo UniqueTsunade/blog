@@ -5,7 +5,13 @@ export enum Status {
   ERROR = "error",
 }
 
-// Интерфейс для данных статьи
+export interface CustomServerError {
+  errors: {
+    [fieldName: string]: string[];
+  };
+  message?: string;
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -19,7 +25,6 @@ export interface Article {
   author: Author;
 }
 
-// Тип для автора
 export interface Author {
   bio: string;
   image: string;
@@ -27,10 +32,15 @@ export interface Author {
   following: boolean;
 }
 
-// Интерфейс для ответа сервера
 export interface ArticlesResponse {
   articles: Article[];
   articlesCount: number;
+}
+
+export interface FetchArticlesParams {
+  limit: number;
+  offset: number;
+  signal?: AbortSignal;
 }
 
 export interface FullArticle {

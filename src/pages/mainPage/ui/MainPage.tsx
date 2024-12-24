@@ -26,8 +26,12 @@ const MainPage: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchArticle({ limit, offset }));
-  }, [currentPage, limit, offset, dispatch]);
+    const promise = dispatch(fetchArticle({ limit, offset }));
+
+    return () => {
+      promise.abort(); 
+    };
+  }, [currentPage, dispatch]);
 
 
   return (

@@ -1,11 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ArticlesResponse } from "./types";
+import { ArticlesResponse, FetchArticlesParams } from "./types";
 import { fetchArticlesFromServer } from "../api/articlesApi";
+import axios from "axios";
 
 export const fetchArticle = createAsyncThunk<
   ArticlesResponse,
-  { limit: number; offset: number }
->("articles/fetchArticles", async ({ limit, offset }) => {
-  const response = await fetchArticlesFromServer({ limit, offset });
-  return response;
+  FetchArticlesParams
+>("articles/fetchArticles", async (params, { signal }) => {
+  try {
+    const response = await fetchArticlesFromServer({ ...params, signal });
+    return response;
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      return;
+    }
+    throw error;
+  }
 });

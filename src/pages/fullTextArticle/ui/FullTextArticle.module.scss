@@ -9,10 +9,13 @@
   filter: $shadow-2;
   font-weight: 400;
   font-size: 12px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 
   .topPart {
     display: grid;
     grid-template-columns: auto max-content 46px;
     margin-bottom: 25px;
+
   }
 }

@@ -1,19 +1,30 @@
 @use "../../../app/styles/variables" as *;
 
-.header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 4px;
+.title {
+  margin-right: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: $info-color;
+}
 
-    .title {
-        margin-right: 13px;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 28px;
-        color: $info-color;
-      }
-    
-      .btnLike {
-        margin-right: 6px;
-      }
-  }
+.btnLike {
+  margin-right: 6px;
+}
+
+.fullTitle {
+  margin-right: 13px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  color: $info-color;
+  overflow: hidden;
+}
+
+.btnsLikeContainer {
+  display: flex;
+  align-items: start;
+}

@@ -4,7 +4,7 @@ import Button from "@/shared/ui/button";
 import styles from "./SignInForm.module.scss";
 import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/app/store";
-import { signInUserThunk } from "../model/signInUserThunk";
+import { getCurrentUser, signInUserThunk } from "../model/thunks";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ServerErrorMessage from "@/shared/ui/errorDisplay/serverErrors";
 import { useSelector } from "react-redux";
@@ -24,8 +24,17 @@ const SignInForm = () => {
     formState: { errors },
   } = useForm<FormValues>();
 
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    dispatch(signInUserThunk(data));
+    dispatch(signInUserThunk(data))
+      .then((result) => {
+        if (signInUserThunk.fulfilled.match(result)) {
+          dispatch(getCurrentUser());
+        }
+      })
+      .catch((error) => {
+        console.error("SignIn error:", error);
+      });
   };
 
   return (
