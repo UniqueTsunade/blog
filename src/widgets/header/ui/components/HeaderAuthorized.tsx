@@ -4,23 +4,36 @@ import profileBase from "@/shared/assets/icons/Profile.png";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/app/store";
 import { clearSession } from "@/features/signIn/model/signInSlice";
+import { useState } from "react";
+import FullPageModal from "@/shared/ui/modals/fullPageModal";
 
 interface HeaderAuthorizedProps {
   username: string;
-  imageProfile?: string
+  imageProfile?: string;
 }
 
-const HeaderAuthorized: React.FC<HeaderAuthorizedProps> = ({ username, imageProfile }) => {
-
+const HeaderAuthorized: React.FC<HeaderAuthorizedProps> = ({
+  username,
+  imageProfile,
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
-  const logOut = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleLogOutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmLogOut = () => {
+    setIsModalOpen(false);
     dispatch(clearSession());
     navigate("/");
   };
 
+  const handleCancelLogOut = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className={styles.headerAuthorized}>
@@ -47,9 +60,12 @@ const HeaderAuthorized: React.FC<HeaderAuthorizedProps> = ({ username, imageProf
           </Link>
         )}
       </div>
-      <a className={styles.logOutBtn} onClick={logOut}>
+      <a className={styles.logOutBtn} onClick={handleLogOutClick}>
         Log Out
       </a>
+      {isModalOpen && (
+        <FullPageModal onConfirm={handleConfirmLogOut} onCancel={handleCancelLogOut} />
+      )}
     </div>
   );
 };

@@ -1,0 +1,51 @@
+@use "../../../app/styles/variables" as *;
+
+.authorizedDescription {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    font-family: "Inter";
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.authorizedBtns {
+    display: flex;
+    column-gap: 12px;
+    font-size: 14px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.deleteButtonContainer {
+    position: relative;
+}
+
+.removeBtn {
+    width: 78px;
+    height: 31.1px;
+    padding: 6px;
+    border: 1px solid $error-color;
+    border-radius: 5px;
+    color: $error-color;
+}
+
+.editBtn {
+    width: 65.23px;
+    height: 31.1px;
+    padding: 6px;
+    border: 1px solid $success-color;
+    border-radius: 5px;
+    color: $success-color;
+}
+
+.text {
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    color: $text-color-secondary;
+    font-size: 12px;
+}

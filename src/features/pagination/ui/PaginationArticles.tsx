@@ -1,11 +1,11 @@
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import styles from "./PaginationArticles.module.scss";
+
 
 interface PaginationArticlesProps {
-  count: number; 
-  page: number; 
-  onChange: (event: React.ChangeEvent<unknown>, page: number) => void; 
+  count: number;
+  page: number;
+  onChange: (event: React.ChangeEvent<unknown>, page: number) => void;
 }
 
 const PaginationArticles: React.FC<PaginationArticlesProps> = ({
@@ -16,11 +16,28 @@ const PaginationArticles: React.FC<PaginationArticlesProps> = ({
   return (
     <Stack spacing={2} alignItems="center">
       <Pagination
+        sx={{
+          "& .MuiPaginationItem-root": {
+            width: 22,
+            height: 26,
+            fontFamily: "Inter",
+            fontSize: "12px",
+            lineHeight: "22px",
+            color: "rgba(0, 0, 0, 0.75)",
+          },
+          "& .Mui-selected": {
+            backgroundColor: "#1890FF !important",
+            color: "#FFFFFF",
+          },
+          "& .MuiPaginationItem-previousNext": {
+            color: "rgba(0, 0, 0, 0.75)",
+          },
+        }}
         count={count}
         page={page}
         onChange={onChange}
         shape="rounded"
-        siblingCount={2} 
+        siblingCount={2}
         boundaryCount={2}
       />
     </Stack>

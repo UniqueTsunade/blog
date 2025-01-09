@@ -8,22 +8,23 @@ export const updateUser = createAsyncThunk(
     try {
       const url = "https://blog-platform.kata.academy/api/user";
 
-
       const token = sessionStorage.getItem("authToken");
-if (!token) {
-  return rejectWithValue("Token is missing");
-}
+      if (!token) {
+        return rejectWithValue("Token is missing");
+      }
 
-const headers = {
-  Authorization: `Bearer ${token}`,
-  "Content-Type": "application/json",
-};
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      };
 
       const requestPayload = {
         user: payload,
       };
 
-      const response = await axios.put<UserResponse>(url, requestPayload, { headers });
+      const response = await axios.put<UserResponse>(url, requestPayload, {
+        headers,
+      });
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

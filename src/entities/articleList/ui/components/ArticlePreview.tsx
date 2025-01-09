@@ -22,20 +22,26 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({ article }) => {
     slug,
   } = article;
 
-
-
   return (
     <div className={styles.articlePreview}>
       <div className={styles.mainInfo}>
-        <ArticleHeader articleHeaderClass={styles.header} title={title} favoritesCount={favoritesCount} slug={slug} />
-        <ArticleTags tagList={tagList} />
-        <ArticleDescription description={description} />
+        <ArticleHeader
+          articleHeaderClass={styles.header}
+          title={title}
+          favoritesCount={favoritesCount}
+          slug={slug}
+        />
+        <ArticleTags articleTagsClass={styles.tags} articleTagClass={styles.tag} tagList={tagList} />
+        <ArticleDescription
+          articleTextClass={styles.descriptionText}
+          description={description}
+        />
       </div>
       <ArticleAuthort
-          username={author.username}
-          image={author.image}
-          createdAt={createdAt}
-        />
+        username={author.username}
+        image={author.image}
+        createdAt={createdAt}
+      />
     </div>
   );
 };

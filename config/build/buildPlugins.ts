@@ -16,7 +16,7 @@ export function buildPlugins({
   const isProd = mode === "production";
 
   const plugins: Configuration["plugins"] = [
-    new HtmlWebpackPlugin({ template: paths.html }),
+    new HtmlWebpackPlugin({ template: paths.html}),
     new DefinePlugin({
       __PLATFORM__: JSON.stringify(platform),
       __ENV__: JSON.stringify(mode),

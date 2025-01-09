@@ -1,23 +1,27 @@
 import { hideText } from "@/shared/lib/textUtils";
-import styles from "./ArticleDescription.module.scss";
 
 interface ArticleDescriptionProps {
   description: string;
+  isFullArticle?: boolean;
+  articleTextClass?: string;
 }
 
 const ArticleDescription: React.FC<ArticleDescriptionProps> = ({
   description,
+  isFullArticle = false,
+  articleTextClass,
 }) => {
-
   if (!description) {
     return null;
-  };
+  }
 
-  const descriptionText = hideText(description, 682, "12px Inter, sans-serif")
+  const descriptionText = hideText(description, 682, "12px Inter, sans-serif");
 
   return (
-    <div className={styles.articleDescription}>
-      <p className={styles.articleText}>{descriptionText}</p>
+    <div>
+      <p className={articleTextClass}>
+        {isFullArticle ? description : descriptionText}
+      </p>
     </div>
   );
 };

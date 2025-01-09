@@ -1,0 +1,70 @@
+@use "../../../../app/styles/variables" as *;
+
+.localModal {
+  position: absolute;
+  top: 0;
+  left: 84px;
+  z-index: 4;
+  filter: $shadow-2;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.modalBlock {
+  width: 240px;
+  height: 104px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  background-color: $grey-1;
+}
+
+.arrow {
+  position: fixed;
+  fill: $grey-1;
+  top: 12px;
+  left: -6px;
+}
+
+.warning {
+  display: flex;
+  margin-bottom: 12px;
+  column-gap: 8px;
+  align-items: baseline;
+}
+
+.text {
+  color: $grey-8;
+}
+
+.warningIcon {
+  color: $warning-color;
+}
+
+.warningBtns {
+  display: flex;
+  justify-content: end;
+  column-gap: 8px;
+}
+
+.btnAccept {
+  width: 34px;
+  height: 24px;
+  background-color: $info-color;
+  padding: 2px 9px;
+  color: $btn-primary-color;
+  border-radius: 4px;
+}
+
+.btnRefusal {
+  width: 34px;
+  height: 24px;
+  background-color: $info-color;
+  padding: 1px 8px;
+  color: $btn-primary-color;
+  background-color: $background-color-base;
+  border: $border;
+  color: $grey-8;
+  border-radius: 4px;
+}

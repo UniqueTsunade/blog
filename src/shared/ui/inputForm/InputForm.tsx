@@ -16,7 +16,7 @@ interface InputFormProp {
   divClassName?: string;
   required?: boolean;
   register?: UseFormRegisterReturn;
-  error?: FieldError; // Добавляем ошибку
+  error?: FieldError; 
 }
 
 const InputForm = forwardRef<HTMLInputElement, InputFormProp>(
@@ -37,6 +37,10 @@ const InputForm = forwardRef<HTMLInputElement, InputFormProp>(
     },
     ref
   ) => {
+
+
+    console.log("Регистер:", register)
+
     return (
       <div className={divClassName}>
         <label className={labelClassName} htmlFor={htmlFor}>

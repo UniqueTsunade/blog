@@ -12,7 +12,7 @@ const ArticleAuthort: React.FC<ArticleAuthortProps> = ({
   createdAt,
 }) => {
   if (!username || !image || !createdAt) {
-    return null; // Если какой-либо из параметров отсутствует, возвращаем null
+    return null;
   }
 
   const getDateArticleCreation = (date: string) => {

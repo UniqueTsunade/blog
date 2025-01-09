@@ -77,6 +77,7 @@ export const signInUser = createSlice({
           "signInState",
           JSON.stringify({
             data: userData,
+            isAuthorized: true, 
           })
         );
         sessionStorage.setItem("authToken", token);

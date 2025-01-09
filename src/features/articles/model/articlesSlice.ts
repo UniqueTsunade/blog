@@ -2,8 +2,9 @@ import { createSlice, PayloadAction, SerializedError } from "@reduxjs/toolkit";
 import { Article, ArticlesResponse, FullArticle } from "./types";
 import { fetchArticle } from "./articlesThunk";
 import { Status } from "./types";
-import { getArticleBySlug } from "./getArticleBySlugThunk";
+import { getArticleBySlug } from "./articleBySlugThunk";
 import { handleCustomError } from "@/entities/articles/lib/handleCustomError";
+import { deleteArticle } from "./deleteArticle";
 
 export interface ArticlesSliceState {
   status: Status;
@@ -40,12 +41,21 @@ export const articlesSlice = createSlice({
           state.isLoading = false;
         }
       )
-      .addCase(fetchArticle.rejected, (state, action: PayloadAction<unknown, string, unknown, SerializedError>) => {
-        state.status = Status.ERROR;
-        state.error = handleCustomError(action.payload) || action.error.message || "Failed to fetch articles";
-        console.error("Error fetching articles:", action.payload);
-        state.isLoading = false;
-      })
+      .addCase(
+        fetchArticle.rejected,
+        (
+          state,
+          action: PayloadAction<unknown, string, unknown, SerializedError>
+        ) => {
+          state.status = Status.ERROR;
+          state.error =
+            handleCustomError(action.payload) ||
+            action.error.message ||
+            "Failed to fetch articles";
+          console.error("Error fetching articles:", action.payload);
+          state.isLoading = false;
+        }
+      )
       .addCase(getArticleBySlug.pending, (state) => {
         state.isLoading = true;
         state.status = Status.LOADING;
@@ -58,12 +68,44 @@ export const articlesSlice = createSlice({
           state.isLoading = false;
         }
       )
-      .addCase(getArticleBySlug.rejected, (state, action: PayloadAction<unknown, string, unknown, SerializedError>) => {
-        state.status = Status.ERROR;
-        state.error = handleCustomError(action.payload) || action.error.message || "Failed to fetch articles";
-        console.error("Error fetching articles:", action.payload);
+      .addCase(
+        getArticleBySlug.rejected,
+        (
+          state,
+          action: PayloadAction<unknown, string, unknown, SerializedError>
+        ) => {
+          state.status = Status.ERROR;
+          state.error =
+            handleCustomError(action.payload) ||
+            action.error.message ||
+            "Failed to fetch articles";
+          console.error("Error fetching articles:", action.payload);
+          state.isLoading = false;
+        }
+      )
+      .addCase(deleteArticle.pending, (state) => {
+        state.isLoading = true;
+        state.status = Status.LOADING;
+      })
+      .addCase(deleteArticle.fulfilled, (state) => {
+        state.status = Status.SUCCESS;
         state.isLoading = false;
-      });
+      })
+      .addCase(
+        deleteArticle.rejected,
+        (
+          state,
+          action: PayloadAction<unknown, string, unknown, SerializedError>
+        ) => {
+          state.status = Status.ERROR;
+          state.error =
+            handleCustomError(action.payload) ||
+            action.error.message ||
+            "Failed to fetch articles";
+          console.error("Error fetching articles:", action.payload);
+          state.isLoading = false;
+        }
+      );
   },
 });
 

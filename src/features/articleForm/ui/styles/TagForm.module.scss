@@ -1,0 +1,33 @@
+@use "../../../../app/styles/variables" as *;
+
+.tagForm {
+    display: flex;
+    column-gap: 17px;
+}
+
+
+.tagInput {
+    width: 300px;
+    height: 40px;
+    padding: 8px 12px;
+    border: $border;
+    border-radius: 4px; 
+    color: $text-color;
+}
+
+.deleteTagBtn {
+    width: 118px;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid $highlight-color;
+    border-radius: 4px;
+    color: $highlight-color;
+    text-align: center;
+
+    &:disabled {
+        border: 1px solid $disabled-btn;
+        opacity: 0.6;
+        color: $disabled-btn;
+        cursor: not-allowed;
+    }
+}

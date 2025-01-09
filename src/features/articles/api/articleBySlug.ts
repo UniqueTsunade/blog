@@ -7,5 +7,6 @@ export const fetchArticleBySlug = async (
   const response = await axios.get<FullArticle>(
     `https://blog-platform.kata.academy/api/articles/${slug}`
   );
+  console.log("Raw server response:", response.data); // Логируем сырые данные
   return response.data;
 };

@@ -7,7 +7,7 @@ interface ArticleHeaderProps {
   title?: string | null;
   favoritesCount?: number;
   slug?: string;
-  articleHeaderClass: string;
+  articleHeaderClass?: string;
 }
 
 const ArticleHeader: React.FC<ArticleHeaderProps> = ({
@@ -16,14 +16,11 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   slug,
   articleHeaderClass,
 }) => {
-
   if (!title || title.trim() === "") {
     title = "Blank article";
   }
 
   const articleTitle = hideText(title, 350, "20px Inter, sans-serif");
-
-  console.log("title: ", title)
 
   return (
     <div className={articleHeaderClass}>
