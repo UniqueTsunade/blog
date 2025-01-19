@@ -25,6 +25,8 @@
       display: flex;
       align-items: start;
       overflow-x: auto;
+      height: 37px;
+      overflow-y: hidden;
       max-width: 350px;
       column-gap: 8px;
       margin-bottom: 4px;
@@ -52,6 +54,7 @@
 
     .someTag {
       padding: 2px 6px 3px 5px;
+      cursor: pointer;
       color: var(--text-color-secondary);
       font-size: 12px;
       line-height: 15px;
