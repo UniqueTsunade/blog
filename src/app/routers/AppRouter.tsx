@@ -4,22 +4,28 @@ import FullTextArticle from "@/pages/fullTextArticle/ui/FullTextArticle";
 import SignUpPage from "@/pages/signUpPage";
 import SignInPage from "@/pages/signInPage";
 import MainPage from "@/pages/mainPage";
-import AuthRedirect from "@/features/authentication";
+import { AuthRedirect, ArticlesRedirect} from "@/features/authentication";
 import EditProfile from "@/pages/editProfile";
 import NewArticle from "@/pages/newArticle";
 import PrivateRoute from "@/shared/ui/privateRoute";
 import UpdateArticle from "@/pages/updateArticle";
 
-const AppRouter: React.FC = () => {
+const AppRouter = () => {
   return (
     <>
       <AuthRedirect />
+      <ArticlesRedirect />
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="/article/:slug" element={<FullTextArticle />} />
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+        </Route>
+
+        {/* Private routes */}
+        <Route path="/" element={<Layout />}>
           <Route path="/profile" element={<EditProfile />} />
           <Route
             path="/new-article"
@@ -29,7 +35,7 @@ const AppRouter: React.FC = () => {
               </PrivateRoute>
             }
           />
-           <Route path="/articles/:slug/edit" element={<UpdateArticle />} />
+          <Route path="/articles/:slug/edit" element={<UpdateArticle />} />
         </Route>
       </Routes>
     </>

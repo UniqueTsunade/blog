@@ -1,8 +1,6 @@
 import { forwardRef } from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
-import ErrorMessage from "../errorDisplay/validatioErrors/ValidationErrorMessage";
 import ValidationErrorMessage from "../errorDisplay/validatioErrors/ValidationErrorMessage";
-
 
 interface InputFormProp {
   htmlFor: string;
@@ -16,7 +14,7 @@ interface InputFormProp {
   divClassName?: string;
   required?: boolean;
   register?: UseFormRegisterReturn;
-  error?: FieldError; 
+  error?: FieldError;
 }
 
 const InputForm = forwardRef<HTMLInputElement, InputFormProp>(
@@ -37,9 +35,7 @@ const InputForm = forwardRef<HTMLInputElement, InputFormProp>(
     },
     ref
   ) => {
-
-
-    console.log("Регистер:", register)
+    console.log("Регистер:", register);
 
     return (
       <div className={divClassName}>
@@ -57,7 +53,7 @@ const InputForm = forwardRef<HTMLInputElement, InputFormProp>(
           {...(register ? register : {})}
           style={{ borderColor: error ? "#F5222D" : "" }}
         />
-          {error && <ValidationErrorMessage error={error} />}
+        {error && <ValidationErrorMessage error={error} />}
       </div>
     );
   }

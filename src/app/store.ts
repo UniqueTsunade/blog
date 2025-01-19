@@ -1,21 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import articlesSlice from "../features/articles/model/articlesSlice";
-import paginationSlice from "@/features/pagination/model/paginationSlice";
-import signUpUser from "@/features/signUp/model/signUpSlice";
-import signInUser from "@/features/signIn/model/signInSlice";
-import editProfile from "@/features/editProfileForm/model/editProfileSlice";
-import articleFormSlice from "@/features/articleForm/model/slice";
+import signUpUser from "@/entities/signUp/model/signUpSlice";
+import signInUser from "@/entities/signIn/model/signInSlice";
+import articleManagement from "@/entities/articleManagement/model/articleManagementSlice";
+import articlesBySlug from "@/entities/articleBySlug/model/articleBySlugSlice";
+import articles from "@/entities/articlePreview/model/articlesSlice";
+import updateUserProfile from "@/entities/userUpdate/model/updateUserSlice";
 
 export const store = configureStore({
   reducer: {
-    articles: articlesSlice,
-    pagination: paginationSlice,
+    articles,
+    articlesBySlug,
     signUp: signUpUser,
     signIn: signInUser,
-    updateProfile: editProfile,
-    createArticle: articleFormSlice,
+    updateUserProfile,
+    articleManagement,
   },
 });
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;

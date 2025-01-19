@@ -1,0 +1,1 @@
+export { getArticleBySlug } from "./model/articleBySlugThunk";

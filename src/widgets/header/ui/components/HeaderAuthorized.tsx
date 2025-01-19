@@ -1,11 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/HeaderAuthorized.module.scss";
 import profileBase from "@/shared/assets/icons/Profile.png";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/app/store";
-import { clearSession } from "@/features/signIn/model/signInSlice";
+import { clearSession } from "@/entities/signIn/model/signInSlice";
 import { useState } from "react";
 import FullPageModal from "@/shared/ui/modals/fullPageModal";
+import { useAppDispatch } from "@/shared/lib/store/storeHooks";
 
 interface HeaderAuthorizedProps {
   username: string;
@@ -17,10 +16,10 @@ const HeaderAuthorized: React.FC<HeaderAuthorizedProps> = ({
   imageProfile,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleLogOutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleLogOutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setIsModalOpen(true);
   };
@@ -60,11 +59,14 @@ const HeaderAuthorized: React.FC<HeaderAuthorizedProps> = ({
           </Link>
         )}
       </div>
-      <a className={styles.logOutBtn} onClick={handleLogOutClick}>
+      <button className={styles.logOutBtn} onClick={handleLogOutClick}>
         Log Out
-      </a>
+      </button>
       {isModalOpen && (
-        <FullPageModal onConfirm={handleConfirmLogOut} onCancel={handleCancelLogOut} />
+        <FullPageModal
+          onConfirm={handleConfirmLogOut}
+          onCancel={handleCancelLogOut}
+        />
       )}
     </div>
   );

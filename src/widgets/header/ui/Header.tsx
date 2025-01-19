@@ -3,7 +3,7 @@ import styles from "./styles/Header.module.scss";
 import HeaderAuthorized from "./components/HeaderAuthorized";
 import HeaderUnauthorized from "./components/HeaderUnAuthorized";
 import { useSelector } from "react-redux";
-import { RootState } from "@/app/store";
+import { RootState } from "@/shared/lib/store/types";
 
 const Header: React.FC = () => {
   const { data, isAuthorized } = useSelector(

@@ -1,0 +1,34 @@
+.title {
+  margin-right: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--info-color);
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.fullTitle {
+  color: var(--info-color);
+  overflow: hidden;
+  font-weight: 400;
+}
+
+.btnsLikeContainer {
+  display: flex;
+  align-self: center;
+  color: var(--text-color);
+  font-size: 12px;
+
+  .btn {
+    width: 16px;
+    height: 14px;
+    margin-right: 6px;
+  }
+
+  .favoritedBtn {
+    width: 14px;
+    height: 13px;
+    margin-right: 6px;
+    color: var(--highlight-color);
+  }
+}

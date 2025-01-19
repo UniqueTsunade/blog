@@ -10,8 +10,6 @@ const ValidationErrorMessage: React.FC<ValidationErrorMessage> = ({
   error,
   errorClassName,
 }) => {
-
-
   if (!error) return null;
   const combinedClassName = errorClassName
     ? `${styles.errorMessage} ${errorClassName}`
@@ -21,5 +19,3 @@ const ValidationErrorMessage: React.FC<ValidationErrorMessage> = ({
 };
 
 export default ValidationErrorMessage;
-
-

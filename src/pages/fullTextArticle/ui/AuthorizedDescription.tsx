@@ -1,13 +1,14 @@
 import Button from "@/shared/ui/button";
-import ArticleDescription from "@/shared/ui/articleDescription";
-import styles from "./AuthorizedDescription.module.scss";
+import ArticleDescription from "@/widgets/articleDescription";
+import styles from "../styles/AuthorizedDescription.module.scss";
 import { useNavigate } from "react-router-dom";
 import LocalModal from "@/shared/ui/modals/localModal";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/app/store";
-import { deleteArticle } from "@/features/articles/model/deleteArticle";
-import { fetchArticle } from "@/features/articles/model/articlesThunk";
+import { useCallback, useState } from "react";
+import { useSelector } from "react-redux";
+import { fetchArticle } from "@/entities/articlePreview/model/articlesThunk";
+import { useAppDispatch } from "@/shared/lib/store/storeHooks";
+import { RootState } from "@/shared/lib/store/types";
+import { deleteArticleThunk } from "@/entities/articleManagement/model/thunks";
 
 interface AuthorizedDescriptionProps {
   description: string;
@@ -19,10 +20,8 @@ const AuthorizedDescription: React.FC<AuthorizedDescriptionProps> = ({
   slug,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { offset, limit } = useSelector(
-    (state: RootState) => state.pagination
-  );
-  const dispatch: AppDispatch = useDispatch();
+  const { offset, limit } = useSelector((state: RootState) => state.articles);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const openEditPage = () => {
@@ -33,24 +32,21 @@ const AuthorizedDescription: React.FC<AuthorizedDescriptionProps> = ({
     setIsModalOpen(true);
   };
 
-  const handleConfirmDelete = () => {
-    dispatch(deleteArticle(slug))
-    .unwrap() 
-    .then(() => {
-      console.log("offset", offset)
-      navigate(`/`); 
-      dispatch(fetchArticle({ limit, offset})); 
-    })
-    .catch((error) => {
-      console.error("Failed to delete article:", error);
-    });
-  };
+  const handleConfirmDelete = useCallback(() => {
+    dispatch(deleteArticleThunk(slug))
+      .unwrap()
+      .then(() => {
+        navigate(`/`);
+        dispatch(fetchArticle({ limit, offset }));
+      })
+      .catch((error) => {
+        console.error("Failed to delete article:", error);
+      });
+  }, [dispatch, slug, navigate, limit, offset]);
 
   const handleCancelDelete = () => {
     setIsModalOpen(false);
   };
-
-  console.log("isModalOpen", isModalOpen);
 
   return (
     <div className={styles.authorizedDescription}>

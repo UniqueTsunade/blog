@@ -1,9 +1,9 @@
-import { AppDispatch } from "@/app/store";
-import ArticleForm from "@/features/articleForm";
-import { createArticle } from "@/features/articleForm/model/thunks";
-import { FormValues } from "@/features/articleForm/ui/ArticleForm";
+import { createArticleThunk } from "@/entities/articleManagement";
+import { useAppDispatch } from "@/shared/lib/store/storeHooks";
+import ArticleForm from "@/widgets/articleForm";
+import { FormValues } from "@/widgets/articleForm/ui/ArticleForm";
+import { useCallback } from "react";
 import { SubmitHandler } from "react-hook-form";
-import { useDispatch } from "react-redux";
 
 const validationRules = {
   title: {
@@ -18,9 +18,9 @@ const validationRules = {
 };
 
 const NewArticle = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = useCallback((data) => {
     const tagList = Object.values(data.article.tagList).filter(Boolean);
     const requestData = {
       article: {
@@ -28,8 +28,8 @@ const NewArticle = () => {
         tagList,
       },
     };
-    dispatch(createArticle(requestData));
-  };
+    dispatch(createArticleThunk(requestData));
+  }, [dispatch, createArticleThunk]);
 
   return (
     <ArticleForm

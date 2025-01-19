@@ -1,27 +1,39 @@
 import styles from "./ServerErrorMessage.module.scss";
 
 interface ServerErrorMessageProps {
-  errors: { [fieldName: string]: string };
-  message: string;
+  error: string | null;
 }
 
-const ServerErrorMessage: React.FC<ServerErrorMessageProps> = ({
-  errors,
-  message,
-}) => {
-  if (Object.keys(errors).length === 0 && !message) return null;
+const ServerErrorMessage: React.FC<ServerErrorMessageProps> = ({ error }) => {
+  const formatMessage = (message: string): string => {
+    if (!message.endsWith(".")) {
+      return `${message}.`;
+    }
+    return message;
+  };
+
+  if (!error) return null;
+
+  if (!error.includes(",")) {
+    return (
+      <div className={styles.serverErrorMessageBlock}>
+        <p className={styles.generalServerError}>{error}</p>
+      </div>
+    );
+  }
+
+  const errorMessages = error
+    .split(",")
+    .map((message) => message.trim())
+    .filter((message) => message.length > 0);
 
   return (
     <div className={styles.serverErrorMessageBlock}>
-      {Object.entries(errors).length > 0 && (
-        <ul>
-          {Object.entries(errors).map(([field, errorMessage]) => (
-            <li key={field}>{`${field}: ${errorMessage}`}</li>
-          ))}
-        </ul>
-      )}
-
-      {message && <p className={styles.generalServerError}>{message}</p>}
+      <ul>
+        {errorMessages.map((message) => (
+          <li key={message}>{formatMessage(message)}</li>
+        ))}
+      </ul>
     </div>
   );
 };

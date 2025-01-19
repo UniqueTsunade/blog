@@ -1,11 +1,9 @@
-@use "../../../../app/styles/variables" as *;
-
 .errorMessage {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
-    color: $highlight-color;
+    color: var(--highlight-color);
 
 }

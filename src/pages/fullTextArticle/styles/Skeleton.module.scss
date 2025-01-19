@@ -1,0 +1,11 @@
+.skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:first-child {
+    margin-top: 26px;
+  }
+
+  filter: var(--shadow-2);
+}

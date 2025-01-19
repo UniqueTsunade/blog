@@ -1,23 +1,25 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { AppDispatch, RootState } from "@/app/store";
-import { getArticleBySlug } from "@/features/articles/model/articleBySlugThunk";
+import { getArticleBySlug } from "@/entities/articleBySlug/model/articleBySlugThunk";
 import { useSelector } from "react-redux";
-import styles from "./FullTextArticle.module.scss";
-
+import styles from "../styles/FullTextArticle.module.scss";
 import AuthorizedDescription from "./AuthorizedDescription";
-import ArticleHeader from "@/shared/ui/articleHeader/ArticleHeader";
-import ArticleDescription from "@/shared/ui/articleDescription";
-import ArticleTags from "@/shared/ui/articleTags";
-import ArticleAuthort from "@/shared/ui/articleAuthor";
-import ArticleBody from "@/shared/ui/articleBody";
+import ArticleHeader from "@/widgets/articleHeader/ArticleHeader";
+import ArticleDescription from "@/widgets/articleDescription";
+import ArticleTags from "@/widgets/articleTags";
+import ArticleAuthort from "@/widgets/articleAuthor";
+import ArticleBody from "./ArticleBody";
+import Skeleton from "./Skeleton";
+import { useAppDispatch } from "@/shared/lib/store/storeHooks";
+import { RootState } from "@/shared/lib/store/types";
 
-const FullTextArticle: React.FC = () => {
+const FullTextArticle = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { fullArticle } = useSelector((state: RootState) => state.articles);
+  const { fullArticle } = useSelector(
+    (state: RootState) => state.articlesBySlug
+  );
   const { isAuthorized } = useSelector((state: RootState) => state.signIn);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (slug) {
@@ -25,13 +27,9 @@ const FullTextArticle: React.FC = () => {
     }
   }, [slug, dispatch]);
 
-  console.log("fullArticle:", fullArticle);
-
   if (!fullArticle) {
-    return <div>Loading...</div>;
+    return <Skeleton />;
   }
-
-  console.log("slug:", slug);
 
   return (
     <div className={styles.fullArticle}>
@@ -41,10 +39,13 @@ const FullTextArticle: React.FC = () => {
             articleHeaderClass={styles.header}
             title={fullArticle.title}
             favoritesCount={fullArticle.favoritesCount}
+            slug={slug}
+            favorited={fullArticle.favorited}
           />
           <ArticleTags
             articleTagsClass={styles.tags}
             articleTagClass={styles.tag}
+            secondsTagClass={styles.someTag}
             tagList={fullArticle.tagList}
           />
         </div>
@@ -55,7 +56,10 @@ const FullTextArticle: React.FC = () => {
         />
       </div>
       {isAuthorized ? (
-        <AuthorizedDescription slug={slug} description={fullArticle.description} />
+        <AuthorizedDescription
+          slug={slug}
+          description={fullArticle.description}
+        />
       ) : (
         <ArticleDescription
           articleTextClass={styles.text}
@@ -64,7 +68,6 @@ const FullTextArticle: React.FC = () => {
         />
       )}
       <ArticleBody body={fullArticle.body} />
-   
     </div>
   );
 };

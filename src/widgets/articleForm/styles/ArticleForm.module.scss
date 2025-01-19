@@ -1,0 +1,109 @@
+input::placeholder {
+  color: var(--grey-6);
+}
+
+.newForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 21px;
+  margin: 34px auto 162px;
+  padding: 97px 32px 48px 32px;
+  width: 938px;
+  min-height: 701px;
+  background-color: var(--background-color-base);
+  border: var(--border);
+  box-shadow: var(--box-shadow);
+  border-radius: 6px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.legendForm {
+  position: absolute;
+  top: 48px;
+  left: 50%;
+  transform: translate(-50%);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;
+  color: var(--grey-9);
+}
+
+.newFormBlock {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2px;
+}
+
+.labelForm {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--grey-9);
+}
+
+.inputNewForm {
+  height: 40px;
+  padding: 8px 12px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color);
+  border: var(--border);
+  border-radius: 4px;
+}
+
+.textareaNewForm {
+  resize: none;
+  height: 168px;
+  padding: 8px 12px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color);
+  border: var(--border);
+  border-radius: 4px;
+}
+
+.tagsBlock {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  margin-bottom: 21px;
+}
+
+.newFormBtn {
+  width: 319px;
+  height: 40px;
+  padding: 8px;
+  margin-left: 0;
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  color: var(--grey-1);
+}
+
+.addTagBtn {
+  width: 136px;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid var(--info-color);
+  border-radius: 4px;
+  color: var(--info-color);
+  text-align: center;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+}
+
+.errorBorder {
+  border-color: var(--error-color);
+}

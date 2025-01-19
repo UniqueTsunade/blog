@@ -1,0 +1,76 @@
+.signInForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 59px auto 48px;
+  padding: 97px 32px 48px 32px;
+  width: 384px;
+  min-height: 374px;
+  background-color: var(--background-color-base);
+  font-family: "Roboto";
+  border: var(--border);
+  box-shadow: var(--box-shadow);
+  border-radius: 6px;
+}
+
+.textInputContainer {
+  margin-bottom: 12px;
+}
+
+.legendForm {
+  position: absolute;
+  top: 48px;
+  left: 50%;
+  transform: translate(-50%);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;
+  color: var(grey-9);
+}
+
+.labelForm {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(grey-9);
+}
+
+.inputForm {
+  padding: 8px 12px;
+  width: 320px;
+  height: 40px;
+  border: var(--border);
+  border-radius: 4px;
+  font-family: "Roboto";
+}
+
+.loginBtn {
+  width: 100%;
+  height: 40px;
+  padding: 8px;
+  margin-bottom: 8px;
+  background: var(--primary-color);
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--btn-primary-color);
+}
+
+.signUpInfo {
+  text-align: center;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--grey-7);
+}
+
+.signUpLink {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: var(--primary-color);
+}

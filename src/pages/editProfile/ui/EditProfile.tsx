@@ -1,9 +1,7 @@
-import EditProfileForm from "@/features/editProfileForm/ui/EditProfileForm";
+import EditProfileForm from "@/widgets/editProfileForm/ui/EditProfileForm";
 
 const EditProfile = () => {
-    return (
-        <EditProfileForm />
-    )
-}
+  return <EditProfileForm />;
+};
 
 export default EditProfile;
